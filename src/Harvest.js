@@ -115,6 +115,14 @@ module.exports = class Harvest {
     return wrapper
   }
 
+  get task_assignments() {
+    return this._getWrapper('task_assignments')
+  }
+
+  get user_assignments() {
+    return this._getWrapper('user_assignments')
+  }
+
   _getWrapper(name) {
     if (!this.wrappers[name]) {
       this.wrappers[name] = new Wrapper(this.url, name, {
