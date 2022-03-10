@@ -207,13 +207,14 @@ module.exports = class Wrapper {
     })
   }
 
-  async _make_delete_request(endpoint) {
+  async _make_delete_request(endpoint, args = {}) {
+    args = Object.assign({}, args, this.headers)
     if (this.pipe_path.length) {
       endpoint = this.pipe_path + '/' + endpoint
     }
 
     return new Promise((resolve, reject) => {
-      this.rest_client.delete(this.base_url + endpoint, (data, response) => {
+      this.rest_client.delete(this.base_url + endpoint, args, (data, response) => {
         resolve(data)
       })
     })
